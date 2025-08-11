@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Nuclear: Energía de bajas muertes y bajas emisiones de carbono</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+    :root{--bg:#0f1724;--card:#0b1220;--muted:#9aa4b2;--accent:#60a5fa}
+    *{box-sizing:border-box;font-family:Inter,system-ui,Arial,sans-serif}
+    body{margin:0;background:linear-gradient(180deg,#071227 0%, #071831 100%);color:#e6eef8}
+    .wrap{max-width:980px;margin:48px auto;padding:28px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:28px;box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+    h1{margin:0;font-weight:600;font-size:28px}
+    p.lead{color:var(--muted);margin-top:8px}
+    .chart-row{display:flex;gap:20px;flex-wrap:wrap;margin-top:22px}
+    .chart-col{flex:1 1 420px}
+    canvas{background:transparent}
+    table{width:100%;border-collapse:collapse;margin-top:18px}
+    th,td{padding:10px;text-align:left;border-bottom:1px dashed rgba(255,255,255,0.04)}
+    th{color:var(--muted);font-weight:600}
+    td.small{color:var(--muted);font-size:13px}
+    .sources{margin-top:16px;color:var(--muted);font-size:13px}
+    .cta{display:inline-block;margin-top:16px;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#3b82f6);color:#04203a;text-decoration:none;font-weight:600}
+    footer{margin-top:26px;color:var(--muted);font-size:13px}
+    @media (max-width:560px){.chart-row{flex-direction:column}}
+  </style>
+</head>
+<body>
+<div class="wrap">
+<div class="card">
+<header>
+<h1>Muertes por unidad de electricidad, por qué la energía nuclear está entre las más seguras</h1>
+<p class="lead">Usando datos revisados, esta página muestra las muertes por unidad de electricidad (muertes por teravatio-hora). Se resume por qué la energía nuclear es importante para una transición fluida hacia matriz energetica verde.</p>
+</header>
+<div class="chart-row">
+<div class="chart-col">
+<canvas height="360" id="barChart" width="600"></canvas>
+</div>
+<div class="chart-col">
+<h3>Cifras rápidas (muertes por TWh)</h3>
+<table>
+<thead><tr><th>Fuente</th><th>Muertes / TWh</th><th class="small">Muertes / kWh</th></tr></thead>
+<tbody id="tableBody"></tbody>
+</table>
+<p class="sources">Fuente de datos: Our World in Data (basado en Markandya &amp; Markandya & Wilkinson (2007); Sovacool et al. (2016); UNSCEAR (2008; & 2018)). Ver notas abajo para advertencias (Hidroelectrica influido fuertemente por raros desastres de represas; tasas de combustibles fósiles excluyen estimaciones de contaminación del aire no relacionadas con la electricidad que aumentarían los conteos fósiles).</p>
+<a class="cta" href="#notes">Ver notas y fuentes</a>
+</div>
+</div>
+<section id="santiago">
+<h2>Necesidades energéticas de Santiago, Chile</h2>
+<p>Santiago, la ciudad más grande de Chile, es un importante consumidor de electricidad y un motor de la demanda energética nacional. En 2023, el consumo total de electricidad de Chile alcanzó <strong>83.3 TWh</strong>, con una producción de aproximadamente <strong>87.7 TWh</strong>. La demanda máxima en la red central (SEN), que sirve a Santiago, alcanzó aproximadamente <strong>11,549 MW</strong> in late 2023.</p>
+<p>Las energías renovables, particularmente la solar y la eólica, representan una proporción creciente de la mezcla, alcanzando <strong>68%</strong> de la generación total de electricidad en 2024 y alcanzando un máximo de <strong>77%</strong> en diciembre. Sin embargo, la variabilidad de estas fuentes, junto con el retiro de plantas de carbón, crea un déficit de capacidad firme para la densa y demandante población de Santiago.</p>
+<p><strong>¿Por qué nuclear?</strong> La energía nuclear, especialmente a través de reactores modulares pequeños (SMR), podría proporcionar electricidad confiable las 24 horas del día para equilibrar las renovables intermitentes y asegurar el suministro durante la demanda máxima. Una propuesta de despliegue para 2030 de cuatro reactores podría evitar la necesidad de 15 calderas de carbón (300 MWe cada una) y compensar alrededor de 238 millones de toneladas de emisiones de CO₂, incluso cuando la demanda crezca a ~140 TWh.</p>
+</section>
+<section id="planificador">
+  <h3 style="margin-top:18px">Rol del planificador urbano</h3>
+  <p>Como estudiante de pregrado, me he encontrado con que varios de mis compañeros tienen una percepción extremadamente negativa respecto a la energía nuclear. Sin embargo, la mayoría no puede justificar esta postura más allá de considerarla peligrosa, haciendo énfasis en los accidentes de Chernóbil y Fukushima. Un análisis más profundo, no obstante, permite observar aspectos distintos.</p>
+  <p>Es importante reconocer que las ciudades son grandes consumidoras de energía eléctrica y que, con la creciente electrificación de diversos procesos (electromovilidad, calefacción, procesos industriales, centros de datos, entre otros), este consumo no hará más que aumentar. Por ello, es fundamental cubrir estas nuevas necesidades con el menor impacto posible.</p>
+  <p>Por lo anterior, es importante que nosotros, como planificadores urbanos, estemos al tanto de las distintas tecnologías energéticas, con sus ventajas y desventajas. Mi objetivo con una visita al <A HREF="https://www.cchen.cl/?page_id=4210"> Centro de Estudios Nucleares de La Reina </A> es adquirir un aprendizaje integral sobre los pros y contras de este recurso, de manera que, al diseñar planes maestros que contemplen el consumo energético, podamos comunicar de forma verídica y eficiente a las autoridades y a la población la información relevante sobre esta tecnología.</p>
+  
+</section>
+
+<section id="notes">
+<h3 style="margin-top:18px">Notas: lo que esto significa</h3>
+<ul style="color:var(--muted);line-height:1.6">
+<li>Las muertes por TWh combinan las muertes inmediatas por accidentes y la mortalidad a largo plazo por contaminación del aire atribuible a la producción de electricidad. Las cifras son estimaciones de mejor esfuerzo y tienen incertidumbres, especialmente para combustibles fósiles y grandes accidentes hidroeléctricos.</li>
+<li>Las muy bajas muertes/TWh de la energía nuclear reflejan tanto una fuerte seguridad operativa como que los principales recuentos de muertes por desastres (p. ej., Chernóbil, Fukushima) son pequeños en comparación con las muertes anuales continuas por contaminación del aire de combustibles fósiles.</li>
+<li>Organismos internacionales, incluidos la IEA y el IPCC, identifican a la energía nuclear como un contribuyente importante para lograr una descarbonización profunda — su producción constante y despachable complementa a las renovables variables durante la transición.</li>
+</ul>
+<h4 style="margin-top:12px">Fuentes seleccionadas</h4>
+<ol class="sources">
+<li>Tasas de muertes por TWh: Our World in Data (compilación basada en Markandya &amp; Wilkinson 2007; Sovacool et al.).</li>
+<li>Papel de la energía nuclear en transiciones seguras: Agencia Internacional de Energía — "Energía nuclear y transiciones energéticas seguras" (IEA).</li>
+<li>Rutas hacia cero emisiones netas y mezclas bajas en carbono: IPCC AR6 (WG3) y seguimientos.</li>
+<li>Demanda energética y mezcla de generación de Chile: CountryEconomy.com, TheGlobalEconomy.com, InvestChile, World Nuclear News.</li>
+</ol>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+    const data = [
+      {source: "Carbon mineral", twh: 32.72},
+      {source: "Carbon", twh: 24.62},
+      {source: "Petroleo", twh: 18.43},
+      {source: "Biomasa", twh: 4.63},
+      {source: "Gas", twh: 2.821},
+      {source: "Hidroelectrica", twh: 1.3},
+      {source: "Eolica", twh: 0.035},
+      {source: "Solar", twh: 0.019},
+      {source: "Nuclear", twh: 0.03}
+    ];
+
+    const tbody = document.getElementById('tableBody');
+    data.forEach(d => {
+      const tr = document.createElement('tr');
+      const perKwh = d.twh / 1e9;
+      tr.innerHTML = `<td>${d.source}</td><td>${d.twh.toFixed(2)}</td><td class=\"small\">${perKwh.toExponential(2)} per kWh</td>`;
+      tbody.appendChild(tr);
+    });
+
+    const ctx = document.getElementById('barChart');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: data.map(d => d.source),
+        datasets: [{
+          label: 'Muertes por TWh',
+          data: data.map(d => d.twh),
+          borderRadius: 8,
+          barThickness: 28
+        }]
+      },
+      options: {
+        plugins: {
+          legend: {display:false},
+          tooltip: {
+            callbacks: {
+              label: ctx => `${ctx.formattedValue} muertes por TWh`
+            }
+          }
+        },
+        scales: {
+          y: {beginAtZero:true, title:{display:true,text:'Muertes por TWh'}},
+          x: {title:{display:false}}
+        }
+      }
+    });
+  </script>
+</body>
+</html>
